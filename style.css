@@ -1,0 +1,35 @@
+header, footer{
+    background-color: rgb(8,33,41);
+    color: white;
+}
+
+.headercontainer{
+    padding: 10px 10px;
+    height: clamp(60px, 10vh, 120px);
+}
+
+.footercontainer{
+    height: clamp(60px, 10vh, 120px);
+}
+
+.contentbox{ 
+    background-color: rgb(13,25,31);
+    padding: 40px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.pokemonBox{
+    width: calc(20% - 16px);
+    height: calc(20% - 16px);;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 30px 30px;
+    border: solid 1px;
+}
