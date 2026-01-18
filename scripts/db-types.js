@@ -1,0 +1,20 @@
+const TYPE_ICONS = {
+    fire: "./img/icons/types/fire.svg",
+    water: "./img/icons/types/water.svg",
+    grass: "./img/icons/types/grass.svg",
+    electric: "./icons/img/types/electric.svg",
+    ice: "./img/icons/types/ice.svg",
+    rock: "./img/icons/types/rock.svg",
+    ground: "./img/icons/types/ground.svg",
+    flying: "./img/icons/types/flying.svg",
+    psychic: "./img/icons/types/psychic.svg",
+    bug: "./img/icons/types/bug.svg",
+    poison: "./img/icons/types/poison.svg",
+    normal: "./img/icons/types/normal.svg",
+    fighting: "./icons/img/types/fighting.svg",
+    ghost: "./img/icons/types/ghost.svg",
+    dark: "./img/icons/types/dark.svg",
+    steel: "./img/icons/types/steel.svg",
+    dragon: "./img/icons/types/dragon.svg",
+    fairy: "./img/icons/types/fairy.svg"
+};

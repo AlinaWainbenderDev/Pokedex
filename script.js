@@ -4,8 +4,8 @@ let allPokemon = [];
 
 async function onloadFunc(){
     await pokemonToArray();
-    await generatePokemon()
-    renderPokemon(allPokemon)
+    await fetchPokemonDetails();
+    renderPokemon(allPokemon);
 }
 
 async function pokemonToArray(){
@@ -20,22 +20,30 @@ async function pokemonToArray(){
     }
 }
 
-async function generatePokemon(){
-
-    for (let index = 0; index < 15; index++) {
+async function fetchPokemonDetails() {
+    for (let index = 0; index < allPokemon.length; index++) {
         let response = await fetch(allPokemon[index].url);
-        let data = await response.json()
-        console.log(data);
+        let data = await response.json();
 
-         allPokemon[index] = {
+        let typeData = await fetchTypeData(data.types[0].type.name);
+
+        let firstWeakness = typeData.damage_relations.double_damage_from[0]?.name || null;
+        let firstStrength = typeData.damage_relations.double_damage_to[0]?.name || null;
+
+        allPokemon[index] = {
             id: data.id,
             name: data.name,
-            image: data.sprites.front_default,
-            types: data.types,
-            height: data.height,
-            weight: data.weight
+            image: data.sprites.other["official-artwork"].front_default,
+            type: data.types[0].type.name,
+            weakness: firstWeakness,
+            strength: firstStrength
         };
     }
+}
+
+async function fetchTypeData(typeName) {
+    let response = await fetch(`https://pokeapi.co/api/v2/type/${typeName}`);
+    return await response.json();
 }
 
 function renderPokemon(allPokemon){
@@ -51,10 +59,25 @@ function renderPokemon(allPokemon){
 }
 
 function templatePokemon(pokemon){
+
+    let weaknessIcon = pokemon.weakness ? TYPE_ICONS[pokemon.weakness] : "";
+    let strengthIcon = pokemon.strength ? TYPE_ICONS[pokemon.strength] : "";
+    
     return `
     <div class="pokemonBox">
-        <h3>${pokemon.name}</h3>
-        <img src="${pokemon.image}">
+        <div class="topBox">
+            <p>No. ${pokemon.id}</p>
+            <h3>${pokemon.name}</h3>
+        </div>
+        <div class="middleBox ${pokemon.type}"><img src="${pokemon.image}" alt="${pokemon.name}"></div>
+        <div class="lowerBox flexbox-spacebetween">
+            <div class="typeContainer">
+                ${weaknessIcon ? `<img src="${weaknessIcon}" class="${pokemon.weakness}" alt="Weakness: ${pokemon.weakness}">` : ""}
+            </div>
+            <div class="strengthContainer">
+                ${strengthIcon ? `<img src="${strengthIcon}" class="${pokemon.strength}" alt="Strength: ${pokemon.strength}">` : ""}
+            </div>
+        </div>
     </div>
     `
 }

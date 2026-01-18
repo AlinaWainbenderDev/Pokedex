@@ -1,12 +1,11 @@
-
 body{
   font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
 }
 
 h3{
   margin: 0;
 }
-
 
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
