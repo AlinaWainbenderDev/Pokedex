@@ -9,7 +9,11 @@ html, body {
 body{
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+}
+
+main{
+  flex: 1;
+  background-color: #0d191f;
 }
 
 .flexbox{
@@ -38,10 +42,6 @@ a {
 
 a:hover{
     cursor: pointer;
-}
-
-.d_none{
-  display: none;
 }
 
 ul{

@@ -3,6 +3,11 @@ header, footer{
     color: white;
 }
 
+/* main{
+    min-height: calc(100vh - 160px);
+} */
+
+
 .headercontainer{
     padding: 10px 10px;
     height: clamp(60px, 10vh, 120px);
@@ -49,5 +54,6 @@ header, footer{
     justify-content: space-between;
     align-items: center;
     gap: 15px;
+    padding: 12px;
 }
 

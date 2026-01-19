@@ -3,9 +3,12 @@ const BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=150&offset=0/";
 let allPokemon = [];
 
 async function onloadFunc(){
+    showLoader();
+    renderSkeletons();
     await pokemonToArray();
     await fetchPokemonDetails();
     renderPokemon(allPokemon);
+    disableLoader();
 }
 
 async function pokemonToArray(){
@@ -82,3 +85,26 @@ function templatePokemon(pokemon){
     `
 }
 
+function showLoader(){
+    document.getElementById('loader').classList.remove('d_none');
+}
+
+function disableLoader() {
+    document.getElementById('loader').classList.add('d_none');
+}
+
+function renderSkeletons(amount = 15) {
+    let box = document.getElementById('contentbox');
+    let html = '';
+
+    for (let index = 0; index < amount; index++) {
+        html += `
+          <div class="pokemonBox skeleton">
+            <div class="topBox"></div>
+            <div class="middleBox"></div>
+            <div class="lowerBox"></div>
+          </div>
+        `;
+    }
+    box.innerHTML = html;
+}
